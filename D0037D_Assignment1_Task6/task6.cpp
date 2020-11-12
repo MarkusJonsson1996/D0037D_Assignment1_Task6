@@ -4,28 +4,45 @@ using namespace std;
 
 int main() {
 
-	string u_input;
-	int n_prime;
+	string uin;
+	int nprime;
+	int n = 1;
 
-	cout << "Enter the number of primes to write: ";
-	cin >> u_input;
-	n_prime = stoi(u_input);
-	
+	cout << "Enter number of primes to print: ";
+	cin >> uin;
+	nprime = stoi(uin);
 
-	if (n_prime > 1) {
+	if (nprime > 1) {
+
 		cout << "2 ";
+		int curval = 3;
+		int valsqrt;
 
-		for (int i_prime = 0; i_prime < n_prime - 1; i_prime++) {
-			if (i_prime % 2 == 0)
-				cout << i_prime * i_prime + (i_prime + 1) * (i_prime + 1) << " ";
-			else
-				cout << 4 * i_prime + 3 << " ";
+		while (n < nprime) {
+
+			if (curval % 2 == 0) {
+				curval++;
+			}
+			else {
+				valsqrt = (int)(sqrt(curval) + 0.5);
+
+				for(int testdiv = 2; testdiv <= valsqrt+1; testdiv++){
+
+					if (curval % testdiv == 0 && testdiv <= valsqrt) {
+						break;
+					}
+					else if(testdiv > valsqrt){
+						n++;
+						cout << curval << " ";
+					}
+
+				}
+				curval++;
+			}
+			
 		}
 	}
-	else if (n_prime == 1)
-		cout << "2" << endl;
+	else if (nprime == 1)
+		cout << "2";
 
-	cout << "done" << endl;
-
-	return 0;
 }
